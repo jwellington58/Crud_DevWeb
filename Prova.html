@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <title>Prova-DevWeb</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+      .card{
+        margin: 20px;
+      }
+    </style>
+    <script src="Prova.js">
+      
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                  Cadastro de Instituição
+                </div>
+                <div class="card-body">
+                  <label for="input_instituicao">Nome</label>
+                  <input id="input_instituicao"   type="text">
+                  <button type="button" class="btn btn-primary" onclick="salvarInstituicao()">Salvar</button>
+                  <!--<ul id="list_instituicao">-->
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                  Cadastro de Aluno
+                </div>
+                <div class="card-body">
+                    <label>Nome</label>
+                    <input id="input_aluno"   type="text">
+                     <label>Insituição</label>
+                     <select  id="select_inst">
+                        
+                     </select> 
+                    <button type="button" class="btn btn-primary" onclick="salvarAluno()">Salvar</button>
+                    <!--<ul id="list_aluno">-->
+                </div>
+            </div>
+        </div>
+      </div>
+      
+          <div class="col">
+              <div class="card">
+                  <div class="card-header">
+                    Lista de Instituições
+                  </div>
+                  <div class="card-body">
+                      <ul id="list_instituicao">
+                  </div>
+              </div>
+          </div>
+
+          <div class="col">
+              <div class="card">
+                  <div class="card-header">
+                    
+                    Lista de Alunos
+                  </div>
+                  <div class="card-body">
+                     <ul id="list_aluno">
+                  </div>
+              </div>
+          </div>
+
+
+     
+    </div>
+    
+    
+  </body>
+</html>
