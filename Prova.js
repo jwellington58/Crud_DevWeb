@@ -16,19 +16,6 @@ function salvarInstituicao() {
   montarSelect()
   document.getElementById('input_instituicao').value = ''
 }
-//Função para salvar os Alunos 
-function salvarAluno(){
-  let alu = {
-    nome: document.getElementById('input_aluno').value,
-    matricula: idAlu,
-    instituicao: document.getElementById('select_inst').value
-  }
-  idAlu++
-  alunos.push(alu)
-  alunos.sort(byNome)
-  montarListAluno()
-  document.getElementById('input_aluno').value = ''
-}
 
 function excluirInstituicao(index){
   var flag = verificaIntituicao(index)
@@ -44,39 +31,15 @@ function excluirInstituicao(index){
   
 }
 
-function excluirAluno(index){
-  alunos.splice(index, 1)
-  let listA = document.getElementById('list_aluno')
-  listA.removeChild(listA.children[index])
-  montarListAluno()
-}
-
-function montarSelect() {
-  let selectInstituicoes = document.getElementById('select_inst')
-  selectInstituicoes.innerHTML = ''
-  //instituicoes.sort()
-  instituicoes.forEach( instituicao => {
-    let option = document.createElement('option')
-    option.text = instituicao.nome
-    option.value = instituicao.id
-    selectInstituicoes.add(option)
-  })
-  
-}
-
-function montarListAluno() {
-  let lista = document.getElementById('list_aluno').innerHTML
-  lista = ''
-  let index = 0
-  alunos.forEach(aluno => {
-    lista = lista + '<li>' + 'Aluno: ' + aluno.nome +  ' Matricula: ' + aluno.matricula + ' Instituicao: ' + aluno.instituicao + 
-            
-            '<button type="button" style="margin: 5px" class="btn btn-success" onclick="editarAluno('+index+')">editar</button>' +        
-            '<button type="button" style="margin: 5px" class="btn btn-danger" onclick="excluirAluno('+index+')">excluir</button>' +
-            
-            '</li>'
-    document.getElementById('list_aluno').innerHTML = lista
-
+function editarInstituicao(index) {
+  let nome = prompt('Insira o novo nome: ')
+  let id = instituicoes[index].id
+  instituicoes.forEach(instituicao => {
+      if(instituicao.id == id){
+       instituicao.nome = nome
+        montarListInstituicao()
+        montarSelect()
+      }
   })
 }
 
@@ -103,6 +66,67 @@ function verificaIntituicao(index) {
       }
     }
     return true;
+}
+
+//Função para salvar os Alunos 
+function salvarAluno(){
+  let alu = {
+    nome: document.getElementById('input_aluno').value,
+    matricula: idAlu,
+    instituicao: document.getElementById('select_inst').value
+  }
+  idAlu++
+  alunos.push(alu)
+  alunos.sort(byNome)
+  montarListAluno()
+  document.getElementById('input_aluno').value = ''
+}
+
+function excluirAluno(index){
+  alunos.splice(index, 1)
+  let listA = document.getElementById('list_aluno')
+  listA.removeChild(listA.children[index])
+  montarListAluno()
+}
+
+function editarAluno(index) {
+  let nome = prompt('Insira o novo nome: ')
+  let matricula = alunos[index].matricula
+  alunos.forEach(aluno => {
+      if(aluno.matricula == matricula){
+        aluno.nome = nome
+        montarListAluno()
+      }
+  })
+}
+
+function montarListAluno() {
+  let lista = document.getElementById('list_aluno').innerHTML
+  lista = ''
+  let index = 0
+  alunos.forEach(aluno => {
+    lista = lista + '<li>' + 'Aluno: ' + aluno.nome +  ' Matricula: ' + aluno.matricula + ' Instituicao: ' + aluno.instituicao + 
+            
+            '<button type="button" style="margin: 5px" class="btn btn-success" onclick="editarAluno('+index+')">editar</button>' +        
+            '<button type="button" style="margin: 5px" class="btn btn-danger" onclick="excluirAluno('+index+')">excluir</button>' +
+            
+            '</li>'
+    document.getElementById('list_aluno').innerHTML = lista
+
+  })
+}
+
+function montarSelect() {
+  let selectInstituicoes = document.getElementById('select_inst')
+  selectInstituicoes.innerHTML = ''
+  //instituicoes.sort()
+  instituicoes.forEach( instituicao => {
+    let option = document.createElement('option')
+    option.text = instituicao.nome
+    option.value = instituicao.id
+    selectInstituicoes.add(option)
+  })
+  
 }
 
 function byNome(a, b) {
